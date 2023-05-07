@@ -20,21 +20,26 @@ app.get('/weather', (request, response) => {
     response.status(200).send(x);
   }
   else if (listType === 'Paris') {
-    let y = weather.find(val => val.city_name);
+    let y = weather.find(val => val.city_name === listType);
+    
     response.status(200).send(y);
   }
   else if (listType === 'Amman') {
-    let z = weather.find(val => val.city_name);
+    let z = weather.find(val => val[2].city_name);
     response.status(200).send(z);
   }
 
   return response.status(200).send('Error');
 
-
-
-
+  
 }
 );
+class Forecast {
+  constructor(obj) {
+    this.description = obj.description;
+    this.date = obj.date;
+  }
+}
 
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
