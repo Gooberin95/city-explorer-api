@@ -25,7 +25,7 @@ app.get('/weather', (request, response) => {
     response.status(200).send(y);
   }
   else if (listType === 'Amman') {
-    let z = weather.find(val => val[2].city_name);
+    let z = weather.find(val => val.city_name === listType);
     response.status(200).send(z);
   }
 
