@@ -14,32 +14,39 @@ app.get('/', (request, response) => {
 });
 
 app.get('/weather', (request, response) => {
-  const { listType } = request.query;
-  if (listType === 'Seattle') {
-    let x = weather.find(val => val.city_name);
+  const { lat, lon, searchQuery } = request.query;
+  if (searchQuery === 'Seattle') {
+    let x = weather.find(val => val.city_name === searchQuery);
+    let y = weather.findIndex(val => val.city_name === searchQuery);
+    let names = weather.map( (val ) => val.lon);
+    console.log(y);
+    console.log(names);
+
     response.status(200).send(x);
   }
-  else if (listType === 'Paris') {
-    let y = weather.find(val => val.city_name === listType);
-    
-    response.status(200).send(y);
+  else if (searchQuery === 'Paris') {
+    let a = weather.find(val => val.city_name === searchQuery);
+    let b = weather.findIndex(val => val.city_name === searchQuery);
+    let names = weather.map( (val ) => val.lon);
+    console.log(b);
+    console.log(names);
+
+    response.status(200).send(a);
   }
-  else if (listType === 'Amman') {
-    let z = weather.find(val => val.city_name === listType);
-    response.status(200).send(z);
+  else if (searchQuery === 'Amman') {
+    let one = weather.find(val => val.city_name === searchQuery);
+    let two = weather.findIndex(val => val.city_name === searchQuery);
+    let names = weather.map( (val ) => val.lon);
+    console.log(two);
+    console.log(names);
+
+    response.status(200).send(one);
   }
 
   return response.status(200).send('Error');
-
-  
 }
 );
-class Forecast {
-  constructor(obj) {
-    this.description = obj.description;
-    this.date = obj.date;
-  }
-}
+
 
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
