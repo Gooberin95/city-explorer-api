@@ -19,7 +19,7 @@ app.get('/weather', (request, response) => {
     let x = weather.find(val => val.city_name === searchQuery);
     let y = weather.findIndex(val => val.city_name === searchQuery);
     let names = weather.map( (val ) => val.lon);
-    console.log(y);
+    console.log(`Seattle is at index ${y}`);
     console.log(names);
 
     response.status(200).send(x);
@@ -28,7 +28,7 @@ app.get('/weather', (request, response) => {
     let a = weather.find(val => val.city_name === searchQuery);
     let b = weather.findIndex(val => val.city_name === searchQuery);
     let names = weather.map( (val ) => val.lon);
-    console.log(b);
+    console.log(`Paris is at index ${b}`);
     console.log(names);
 
     response.status(200).send(a);
@@ -37,7 +37,7 @@ app.get('/weather', (request, response) => {
     let one = weather.find(val => val.city_name === searchQuery);
     let two = weather.findIndex(val => val.city_name === searchQuery);
     let names = weather.map( (val ) => val.lon);
-    console.log(two);
+    console.log(`Amman is at index ${two}`);
     console.log(names);
 
     response.status(200).send(one);
