@@ -19,18 +19,18 @@ app.get('/weather', (request, response) => {
     let x = weather.find(val => val.city_name);
     response.status(200).send(x);
   }
-  
-
-
-
-
-  class Ruler {
-    constructor(obj) {
-      this.city_name = obj.name;
-      this.lon = obj.lon;
-      this.lat = obj.lat;
-    }
+  else if (listType === 'Paris') {
+    let y = weather.find(val => val.city_name);
+    response.status(200).send(y);
   }
+  else if (listType === 'Amman') {
+    let z = weather.find(val => val.city_name);
+    response.status(200).send(z);
+  }
+
+  return response.status(200).send('Error');
+
+
 
 
 }
