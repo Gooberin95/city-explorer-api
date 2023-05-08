@@ -15,7 +15,7 @@ app.get('/', (request, response) => {
 
 app.get('/weather', (request, response) => {
   const { lat, lon, searchQuery } = request.query;
-  if (searchQuery === 'Seattle') {
+  if (searchQuery === 'Seattle' || lat === 'hi' || lon === 'bye') {
     let x = weather.find(val => val.city_name === searchQuery);
     let y = weather.findIndex(val => val.city_name === searchQuery);
     let names = weather.map( (val ) => val.data[0].datetime);
