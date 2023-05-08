@@ -21,6 +21,7 @@ app.get('/weather', (request, response) => {
     let dates = weather.map( (val ) => val.data[0].datetime);
     let descr = weather.map((val ) => val.data[0].weather);
     console.log(`Seattle is at index ${y}`);
+    console.log(x);
     console.log(dates);
     
 
@@ -33,6 +34,7 @@ app.get('/weather', (request, response) => {
     let condit = weather.map( (val) => val.data[1].weather);
     console.log(`Paris is at index ${b}`);
     console.log(day);
+    console.log(a);
 
     response.status(200).send(condit);
   }
@@ -43,6 +45,7 @@ app.get('/weather', (request, response) => {
     let weath = weather.map((val ) => val.data[2].weather);
     console.log(`Amman is at index ${two}`);
     console.log(dayOf);
+    console.log(one);
 
     response.status(200).send(weath);
   }
