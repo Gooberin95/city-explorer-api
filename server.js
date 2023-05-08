@@ -18,11 +18,11 @@ app.get('/weather', (request, response) => {
   if (searchQuery === 'Seattle') {
     let x = weather.find(val => val.city_name === searchQuery);
     let y = weather.findIndex(val => val.city_name === searchQuery);
-    let names = weather.map( (val ) => val.data[0]);
+    let names = weather.map( (val ) => val.data[0].datetime);
     console.log(`Seattle is at index ${y}`);
     console.log(names);
 
-    response.status(200).send(x);
+    response.status(200).send(names);
   }
   else if (searchQuery === 'Paris') {
     let a = weather.find(val => val.city_name === searchQuery);
@@ -31,7 +31,7 @@ app.get('/weather', (request, response) => {
     console.log(`Paris is at index ${b}`);
     console.log(names);
 
-    response.status(200).send(a);
+    response.status(200).send(names);
   }
   else if (searchQuery === 'Amman') {
     let one = weather.find(val => val.city_name === searchQuery);
@@ -40,7 +40,7 @@ app.get('/weather', (request, response) => {
     console.log(`Amman is at index ${two}`);
     console.log(names);
 
-    response.status(200).send(one);
+    response.status(200).send(names);
   }
 
   return response.status(200).send('Error');
