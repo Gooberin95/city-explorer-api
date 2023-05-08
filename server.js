@@ -18,11 +18,13 @@ app.get('/weather', (request, response) => {
   if (searchQuery === 'Seattle' && lat === '-122.330062' && lon === '47.6038321') {
     let x = weather.find(val => val.city_name === searchQuery);
     let y = weather.findIndex(val => val.city_name === searchQuery);
-    let names = weather.map( (val ) => val.data[0].datetime);
+    let dates = weather.map( (val ) => val.data[0].datetime);
+    let descr = weather.map((val ) => val.data[0].weather);
     console.log(`Seattle is at index ${y}`);
-    console.log(names);
+    console.log(descr);
+    
 
-    response.status(200).send(names);
+    response.status(200).send(dates);
   }
   else if (searchQuery === 'Paris') {
     let a = weather.find(val => val.city_name === searchQuery);
