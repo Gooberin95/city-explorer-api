@@ -44,8 +44,8 @@ app.get('/weather', (request, response) => {
 
 class Forecast {
   constructor(obj) {
-    this.left = obj.moonrise_ts;
-    this.right = obj.high_temp;
+    this.description = obj.weather.description;
+    this.date = obj.datetime;
   }
 }
 
