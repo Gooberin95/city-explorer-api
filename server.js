@@ -23,8 +23,6 @@ app.get('/weather', (request, response) => {
     console.log(`Seattle is at index ${y}`);
     console.log(x);
     console.log(dates);
-    
-
     response.status(200).send(descr);
   }
   else if (searchQuery === 'Paris' && lat === '2.3200410217200766' && lon === '48.8588897') {
@@ -41,19 +39,26 @@ app.get('/weather', (request, response) => {
   else if (searchQuery === 'Amman' && lat === '35.9239625' && lon === '31.9515694') {
     let one = weather.find(val => val.city_name === searchQuery);
     let two = weather.findIndex(val => val.city_name === searchQuery);
-    let dayOf = weather.map( (val ) => val.data[2].datetime);
-    let weath = weather.map((val ) => val.data[2].weather);
+    let dayOf = one.data.map( val => new Forecast(val));
+    // let weath = weather.map((val ) => val.data[2].weather);
     console.log(`Amman is at index ${two}`);
+
     console.log(dayOf);
     console.log(one);
 
-    response.status(200).send(weath);
+    response.status(200).send(dayOf);
   }
 
   return response.status(200).send('Error');
 }
 );
 
+class Forecast {
+  constructor(obj) {
+    this.left = obj.moonrise_ts;
+    this.right = obj.high_temp;
+  }
+}
 
 
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));
