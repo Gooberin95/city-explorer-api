@@ -21,6 +21,7 @@ app.get('/weather',async (request, response) => {
   console.log('This is the url', url);
   let weatherResponse = await axios.get(url);
   let formattedData = weatherResponse.data.data.map( val => new Forecast(val));
+  
   console.log('this is weather response', formattedData);
   // if (searchQuery === 'Seattle' && lat === '-122.330062' && lon === '47.6038321') {
   //   let x = url.find(val => val.city_name === searchQuery);
