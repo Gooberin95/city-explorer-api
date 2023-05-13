@@ -17,15 +17,16 @@ const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
 
 app.get('/movies', async (request, response) => {
   const {searchQuery} = request.query;
-  const API = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&q=${this.state.searchQuery}&format=json`;
-  
+  const API = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${MOVIE_API_KEY}&format=json`;
+
   const movieRes = await axios.get(API);
   console.log('Here is the url you searched:....', API);
   console.log(movieRes.data);
-  this.setState({ videoStats: movieRes.data[0] });
+  let moviesFormatted = movieRes.data.results.map( val => new Movies(val));
 
-  console.log(`${this.state.videoStats}`);
-  
+  console.log(moviesFormatted);
+
+  return response.status(200).send(moviesFormatted);
 }
 );
 
