@@ -2,7 +2,8 @@
 const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
 const axios = require('axios');
 
-function getMovies(request, response, searchQuery) {
+function getMovies(request, response) {
+  const {searchQuery} = request.query;
   const API = `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${MOVIE_API_KEY}&format=json`;
   axios
     .get(API)

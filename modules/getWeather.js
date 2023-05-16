@@ -3,13 +3,14 @@ const axios = require('axios');
 const WEATHER_BIT = process.env.WEATHER_BIT;
 
 
-function getWeather(request, response, lat, lon) {
+function getWeather(request, response) {
+  const {lat, lon } = request.query;
   const url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${WEATHER_BIT}`;
   axios
     .get(url)
     .then(res => {
       console.log(res.data);
-      const formattedData = res.data.results.map(val => new Forecast (val));
+      const formattedData = res.data.data.map(val => new Forecast (val));
       response.status(200).send(formattedData);
 
     })
