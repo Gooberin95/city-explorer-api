@@ -7,18 +7,20 @@ function getWeather(request, response) {
   const { lat, lon } = request.query;
   const url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${WEATHER_BIT}`;
   const key = 'Film' + lat + lon;
-  if (cache[key]) {
-    console.log("you have hit your cache");
+  if (cache[key] && (Date.now() -cache[key].timestamp) < 60000) {
+    console.log("$$$$$$$$$$$$...you have hit your cache");
     response.status(200).send(cache[key].data);
   }
   else {
-    console.log("You have missed your cache");
+    console.log("$$$$$$$$$$$$$$$...You have missed your cache");
     axios.get(url)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         const weatherFormatted = res.data.data.map(val => new Forecast (val));
         cache[key] = {};
         cache[key].data = weatherFormatted;
+        cache[key].timestamp = Date.now();
+        console.log(cache[key].timestamp);
         response.status(200).send(cache[key].data);
 
       })
@@ -35,6 +37,7 @@ class Forecast {
     this.description = obj.weather.description;
     this.temp = obj.temp;
     this.date = obj.datetime;
+    this.time_stamp_here = Date.now();
   }
 }
 
